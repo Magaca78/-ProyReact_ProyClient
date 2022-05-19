@@ -1,18 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
+import { Routes,Route } from "react-router-dom";
 import { Layout } from "antd";
+import MenuTop from "../components/AdminComponents/MenuTop";
+import MenuSider from "../components/AdminComponents/MenuSider";
+import { GithubOutlined } from "@ant-design/icons";
+import SignIn from "../pages/Admin/SignIn";
+import "./LayoutAdmin.scss";
 
 export default function LayoutAdmin(props){
-    const {children} = props
-    /*Especificas los componentes que quieres obtener de este layout */
-    const {Header, Content, Footer} = Layout
-    return(
+    const [menuCollapsed, setMenuCollapsed] = useState(false);
+    const { Header, Content, Footer} = Layout;
+    const { children } = props;
+    const user = null;
+
+    if (!user) {
+      return(
+        <>
+          <SignIn/>
+          <Routes>
+            <Route path="/admin/login/*" element={<SignIn/> }/>
+          </Routes>
+        </> 
+      )
+    }
+    return (
         <Layout>
-            <h2>Menu Sider</h2>
-        <Layout>
-            <Header>Header</Header>
-            <Content>{children}</Content>
-            <Footer>React Project 2022</Footer>
+          <MenuSider menuCollapsed={menuCollapsed} />
+          <Layout
+            className="layout-admin"
+            style={{ marginLeft: menuCollapsed ? "80px" : "200px" }}
+          >
+            <Header className="layout-admin__header">
+              <MenuTop
+                menuCollapsed={menuCollapsed}
+                setMenuCollapsed={setMenuCollapsed}
+              />
+            </Header>
+            <Content className="layout-admin__content">{children}</Content>
+            <Footer className="layout-admin__footer">
+              <GithubOutlined style={{ fontSize: "17px" }} /> Magaca78
+            </Footer>
+          </Layout>
         </Layout>
-        </Layout>
-    );
+      );
 }
