@@ -13,7 +13,7 @@ import AdminSignIn from "../pages/Admin/SignIn";
 
 const routesAdmin = [
     {
-        path: "/admin",
+        path: "/admin/*",
         layout: LayoutAdmin,
         component: AdminHome,
     },
