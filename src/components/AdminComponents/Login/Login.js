@@ -7,21 +7,19 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../../../api/constants";
 import "./Login.scss"
 
 export default function Login() {
-
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
 
-const changeForm = (e) => {
+const changeForm = e => {
     setInputs({
       ...inputs,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
-  
-}
+};
 
-  const login = async(e) =>{
+  const login = async e =>{
     e.preventDefault();
     console.log(inputs);
     const result = await signIn(inputs);
@@ -38,14 +36,13 @@ const changeForm = (e) => {
       notification["success"]({
         message: "Login correcto"
       });
-
       window.location.href = "/admin";
    }
    console.log(result);
   };
 
   return (
-        <Form className="login-form" onSubmit={login} onChange={changeForm}>
+        <Form className="login-form" onChange={changeForm}>
           <Form.Item>
             <Input
              prefix={
@@ -71,10 +68,9 @@ const changeForm = (e) => {
             />
           </Form.Item>
           <Form.Item>
-            <Button onClick={login} htmlType="submit" className="login-form__button"  >
+            <Button htmlType="submit" onClick={login} className="login-form__button"  >
               Entrar 
             </Button>
-            
           </Form.Item>
         </Form>
       );

@@ -1,10 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import miroutes from "./config/routes";
+import AuthProvider from "./providers/authProvider";
 import "./App.scss";
 
 export default function App() {
   return (
+    /*Siempre que navegamos en el sistema se validara si estamos logueados */
+  <AuthProvider>
     <BrowserRouter>
       <Routes>
         {miroutes.map((route, index) => (
@@ -20,5 +23,6 @@ export default function App() {
         ))}
       </Routes>
     </BrowserRouter>
+  </AuthProvider>
   );
 }

@@ -12,9 +12,13 @@ export default function SignIn() {
   const { TabPane } = Tabs;
 
   if (getAccessToken()) {
-    <Routes>
-        <Route path="/admin" />
-    </Routes>
+    return(
+      <>
+      <Routes>
+          <Route path="/admin" />
+      </Routes>
+      </>
+    );
   }
   return (
     <Layout className="sign-in">
