@@ -8,6 +8,7 @@ import Contact from "../pages/Contact"
 /* Paginas del adinistrador */
 import AdminHome from "../pages/Admin/Admin";
 import AdminSignIn from "../pages/Admin/SignIn";
+import AdminUsers from "../pages/Admin/Users"
 
 /* Arreglo de rutas disponibles para el administardor */
 
@@ -22,6 +23,12 @@ const routesAdmin = [
         path: "/admin/login/*",
         layout: LayoutAdmin,
         component: AdminSignIn,  
+     },  
+
+     {
+        path: "/admin/users",
+        layout: LayoutAdmin,
+        component: AdminUsers,  
      },  
      
      
